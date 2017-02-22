@@ -22,7 +22,7 @@
 * user_id(association)
 * prototype(association)
 
-# CapturedImage
+# Image
 * image
 * status
 * prototype_id(association)
@@ -33,10 +33,10 @@
 * User has_many Likes
 * Prototype has_many Comments
 * Prototype has_many Likes
-* Prototype has_many CaputuredImage
+* Prototype has_many Image
 * Prototype belongs_to User
 * Comment belongs_to User
 * Comment belongs_to Prototype
 * Like belongs_to User
 * Like belongs_to Prototype
-* CapturedImage belongs_to Prototype
+* Image belongs_to Prototype
