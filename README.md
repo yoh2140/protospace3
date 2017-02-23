@@ -1,30 +1,30 @@
-#User
-* username
-* avatar
-* member
-* profile
-* works
-* e-mail(devise)
-* password(devise)
+# User
+* username:         :string
+* avatar            :text
+* member            :text
+* profile           :text
+* works             :text
+* e-mail(devise)    :string
+* password(devise)  :string
 
 # Prototype
-* title
-* cach_copy
-* concept
-* user_id(association)
+* title                   :string
+* cach_copy               :text
+* concept                 :text
+* user(association)    :reference
 
 # Comment
-* content
-* user_id(association)
-* prototype(association)
+* content                 :text
+* user(association)    :reference
+* prototype(association)  :reference
 
 # Like
-* user_id(association)
-* prototype(association)
+* user(association)    :reference
+* prototype(association)  :reference
 
 # Image
-* content
-* prototype_id(association)
+* content                   :text
+* prototype(association) :reference
 
 # Association
 * User has_many Prototypes
