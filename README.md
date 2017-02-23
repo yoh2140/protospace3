@@ -11,20 +11,20 @@
 * title                   :string
 * cach_copy               :text
 * concept                 :text
-* user_id(association)    :reference
+* user(association)    :reference
 
 # Comment
 * content                 :text
-* user_id(association)    :reference
+* user(association)    :reference
 * prototype(association)  :reference
 
 # Like
-* user_id(association)    :reference
+* user(association)    :reference
 * prototype(association)  :reference
 
 # Image
 * content                   :text
-* prototype_id(association) :reference
+* prototype(association) :reference
 
 # Association
 * User has_many Prototypes
