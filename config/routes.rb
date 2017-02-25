@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-root 'prototypes#index'
+  root 'prototypes#index'
 
-resources :prototypes
+  resources :prototypes do
+    resources :comments
+  end
 end
