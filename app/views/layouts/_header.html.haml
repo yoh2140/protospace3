@@ -8,16 +8,7 @@
       = image_tag("logo.png", alt: "PROTO TYPE - SHARE THE PROTOTYPE", height: "36px")
     .navbar-collapse.collapse.navbar-responsive-collapse
       //not login
-      - unless user_signed_in?
-        %ul.nav.navbar-nav.navbar-right
-          %li
-            .btn.btn-primary.navbar-btn
-              = link_to "ログイン", new_user_session_path
-          %li
-            .btn.btn-primary.navbar-btn
-              = link_to "新規登録", new_user_registration_path
-        //login
-      - else
+      - if user_signed_in?
         %ul.nav.navbar-nav.navbar-right
           %li
             .btn.btn-primary.navbar-btn
@@ -31,3 +22,12 @@
           %li
             .btn.btn-primary.navbar-btn
               = link_to "プロトタイプ作成", new_prototype_path
+        //login
+      - else
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            .btn.btn-primary.navbar-btn
+              = link_to "ログイン", new_user_session_path
+          %li
+            .btn.btn-primary.navbar-btn
+              = link_to "新規登録", new_user_registration_path
