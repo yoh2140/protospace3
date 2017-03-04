@@ -1,16 +1,16 @@
 .container
-  %form.form-signin
-    %h2.form-signin-heading Please sign in
-    %label.sr-only{for: "inputEmail"} Email address
-    %input#inputEmail.form-control{autofocus: "", placeholder: "Email address", required: "", type: "email"}/
-    %label.sr-only{for: "inputPassword"} Password
-    %input#inputPassword.form-control{placeholder: "Password", required: "", type: "password"}/
-    .checkbox
-      %label
-        %input{type: "checkbox", value: "remember-me"}/
-        Remember me
-    %button.btn.btn-lg.btn-primary.btn-block{type: "submit"} Sign in
-  .text-center
-    %p
-      Not a member?
-      %a{href: "/users/sign_in"} Sign up now
+  .form-signin
+    = form_for(resource, as: resource_name, class: "", url: user_session_path, html: { method: :post}) do |f|
+      = devise_error_messages!
+      .h2.form-signin-heading Please sign in
+      = f.email_field :email, class: "form-control", id: "inputEmail", autofocus: "", placeholder: "メールアドレス", required: ""
+      = f.password_field :password, class: "form-control", id: "inputEmail", autofocus: "", placeholder: "パスワード", required: ""
+      .checkbox
+        %label
+          = f.check_box :remember_me
+          メールアドレスとパスワードを記憶する
+      = f.submit "ログインする", class: "btn btn-lg btn-primary btn-block"
+    .text-center
+      %p
+        Not a member?
+        = link_to ' 新規登録 ', new_user_registration_path
