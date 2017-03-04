@@ -3,8 +3,9 @@ class UsersController < ApplicationController
 
   def update
       if @user.update(update_params)
-        redirect_to :root
+        redirect_to :root, notice: "変更が完了しました。"
       else
+        flash.now[:alert] = "変更が失敗しました。"
         render :edit
       end
   end
