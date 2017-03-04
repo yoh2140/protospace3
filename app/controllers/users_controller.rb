@@ -3,7 +3,11 @@ class UsersController < ApplicationController
 
   def update
     @user.update(update_params)
-    redirect_to :root
+      if @user.save
+        redirect_to :root
+      else
+        render :edit
+      end
   end
 
   def edit
@@ -18,6 +22,6 @@ class UsersController < ApplicationController
   end
 
   def update_params
-    params.require(:user).permit(:username, :email, :password, :member, :profile, :works)
+    params.require(:user).permit(:username, :email, :password, :member, :profile, :works, :avatar)
   end
 end

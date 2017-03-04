@@ -2,6 +2,8 @@
   = form_for(current_user) do |f|
     .col-md-8.col-md-offset-2
       %header.row.user-nav.row
+        - @user.errors.full_messages.each do |message|
+          = message
         .col-md-12
           %h2 Edit Profile
           .user-name_image.row
