@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:update, :edit, :show]
+  before_action :authenticate_user!, only: [:update, :edit]
 
   def update
       if @user.update(update_params)
