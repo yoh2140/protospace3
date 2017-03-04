@@ -21,13 +21,13 @@
         %ul.nav.navbar-nav.navbar-right
           %li
             .btn.btn-primary.navbar-btn
-              = link_to "UserName", class: "dropdown-toggle", aria: {expanded: "false"}, data: {toggle: "dropdown"}, role: "button"
+              = link_to current_user.username, user_path(current_user)
           %li
             .btn.btn-primary.navbar-btn
-              = link_to "Profile Edit", "#"
+              = link_to "プロフィール変更", edit_user_registration_path
           %li
             .btn.btn-primary.navbar-btn
               = link_to "ログアウト", destroy_user_session_path, method: :delete
           %li
             .btn.btn-primary.navbar-btn
-              = link_to "New Proto", new_prototype_path
+              = link_to "プロトタイプ作成", new_prototype_path
