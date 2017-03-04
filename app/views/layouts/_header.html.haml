@@ -14,13 +14,15 @@
             = link_to "Get Started", new_user_registration_path
       //login
       %ul.nav.navbar-nav.navbar-right
-        %li.dropdown
-          = link_to "UserName", class: "dropdown-toggle", aria: {expanded: "false"}, data: {toggle: "dropdown"}, role: "button"
-          %ul.dropdown-menu{role: "menu"}
-            %li
-              = link_to "Profile Edit", "#"
-            %li
-              = link_to "logout", "#"
+        %li
+          .btn.btn-primary.navbar-btn
+            = link_to "UserName", class: "dropdown-toggle", aria: {expanded: "false"}, data: {toggle: "dropdown"}, role: "button"
+        %li
+          .btn.btn-primary.navbar-btn
+            = link_to "Profile Edit", "#"
+        %li
+          .btn.btn-primary.navbar-btn
+            = link_to "ログアウト", destroy_user_session_path, method: :delete
         %li
           .btn.btn-primary.navbar-btn
             = link_to "New Proto", new_prototype_path
