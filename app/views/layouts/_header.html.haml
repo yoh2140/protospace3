@@ -8,21 +8,26 @@
       = image_tag("logo.png", alt: "PROTO TYPE - SHARE THE PROTOTYPE", height: "36px")
     .navbar-collapse.collapse.navbar-responsive-collapse
       //not login
-      %ul.nav.navbar-nav.navbar-right
-        %li
-          .btn.btn-primary.navbar-btn
-            = link_to "Get Started", new_user_registration_path
-      //login
-      %ul.nav.navbar-nav.navbar-right
-        %li
-          .btn.btn-primary.navbar-btn
-            = link_to "UserName", class: "dropdown-toggle", aria: {expanded: "false"}, data: {toggle: "dropdown"}, role: "button"
-        %li
-          .btn.btn-primary.navbar-btn
-            = link_to "Profile Edit", "#"
-        %li
-          .btn.btn-primary.navbar-btn
-            = link_to "ログアウト", destroy_user_session_path, method: :delete
-        %li
-          .btn.btn-primary.navbar-btn
-            = link_to "New Proto", new_prototype_path
+      - unless user_signed_in?
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            .btn.btn-primary.navbar-btn
+              = link_to "ログイン", new_user_session_path
+          %li
+            .btn.btn-primary.navbar-btn
+              = link_to "新規登録", new_user_registration_path
+        //login
+      - else
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            .btn.btn-primary.navbar-btn
+              = link_to "UserName", class: "dropdown-toggle", aria: {expanded: "false"}, data: {toggle: "dropdown"}, role: "button"
+          %li
+            .btn.btn-primary.navbar-btn
+              = link_to "Profile Edit", "#"
+          %li
+            .btn.btn-primary.navbar-btn
+              = link_to "ログアウト", destroy_user_session_path, method: :delete
+          %li
+            .btn.btn-primary.navbar-btn
+              = link_to "New Proto", new_prototype_path
