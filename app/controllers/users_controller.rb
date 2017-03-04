@@ -2,8 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:update, :edit, :show]
 
   def update
-    @user.update(update_params)
-      if @user.save
+      if @user.update(update_params)
         redirect_to :root
       else
         render :edit
