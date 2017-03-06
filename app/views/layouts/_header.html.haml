@@ -15,7 +15,7 @@
               = link_to current_user.username, user_path(current_user)
           %li
             .btn.btn-primary.navbar-btn
-              = link_to "プロフィール変更", edit_user_registration_path
+              = link_to "プロフィール変更", edit_user_path(current_user)
           %li
             .btn.btn-primary.navbar-btn
               = link_to "ログアウト", destroy_user_session_path, method: :delete
