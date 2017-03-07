@@ -13,12 +13,19 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    if current_user.prototypes.create(create_params)
-      redirect_to :root, notice: "作成ができました。"
-    else
-      flash.now[:alert] = "作成に失敗しました。"
-      render :new
-    end
+    @prototype = Prototype.new(create_params)
+      if @prototype.save
+        flash.now[:success] = "作成が成功しました。"
+        render 'index'
+      else
+        flash.now[:error] = "作成が失敗しました。"
+        render 'new'
+      end
+    # if current_user.prototypes.create(create_params)
+    #   redirect_to :root, notice: "作成ができました。"
+    # else
+    #   redirect_to new_prototype_path, alert: "作成ができました。"
+    # end
   end
 
   def destroy
