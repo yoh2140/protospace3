@@ -7,6 +7,7 @@ class PrototypesController < ApplicationController
 
   def new
     @prototype = Prototype.new
+    @prototype.images.build
   end
 
   def show
@@ -21,11 +22,6 @@ class PrototypesController < ApplicationController
         flash.now[:error] = "作成が失敗しました。"
         render 'new'
       end
-    # if current_user.prototypes.create(create_params)
-    #   redirect_to :root, notice: "作成ができました。"
-    # else
-    #   redirect_to new_prototype_path, alert: "作成ができました。"
-    # end
   end
 
   def destroy
@@ -43,6 +39,6 @@ class PrototypesController < ApplicationController
   end
 
   def create_params
-    params.require(:prototype).permit(:title, :cach_copy, :concept).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:title, :cach_copy, :concept, images_attributes: [:id, :content]).merge(user_id: current_user.id)
   end
 end
