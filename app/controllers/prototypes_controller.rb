@@ -1,6 +1,6 @@
 class PrototypesController < ApplicationController
   before_action :authenticate_user!, only: :new
-  before_action :set_prototype, only: [:edit, :destroy, :update]
+  before_action :set_prototype, only: %i(show edit destroy update)
 
   def index
   end
@@ -14,14 +14,14 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    @prototype = Prototype.new(create_params)
-      if @prototype.save
-        flash.now[:success] = "作成が成功しました。"
-        render 'index'
-      else
-        flash.now[:error] = "作成が失敗しました。"
-        render 'new'
-      end
+    prototype = Prototype.new(create_params)
+    if prototype.save
+      flash.now[:success] = "作成が成功しました。"
+      render 'index'
+    else
+      flash.now[:danger] = "作成が失敗しました。"
+      render 'index'
+    end
   end
 
   def destroy
