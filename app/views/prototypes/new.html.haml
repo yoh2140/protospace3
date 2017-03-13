@@ -1,5 +1,5 @@
 .container.proto-new
-  = form_for(prototypes_path, method: :post) do |f|
+  = form_for(@prototype) do |f|
     .col-md-8.col-md-offset-2
       %header.row.user-nav.row
         .col-md-12
@@ -8,20 +8,16 @@
         .col-md-12
           .cover-image-upload
             = f.fields_for :images do |image|
-              =image.file_field :content
+              = image.file_field :content
+              = image.hidden_field :status, value: :main
         .col-md-12
           %ul.proto-sub-list.list-group
-            %li.list-group-item.col-md-4
-              .image-upload
-                = f.fields_for :images do |image|
-                  =image.file_field :content
-            %li.list-group-item.col-md-4
-              .image-upload
-                = f.fields_for :images do |image|
-                  =image.file_field :content
-            %li.list-group-item.col-md-4
-              .image-upload-plus
-                %span +
+            - 2.times do
+              %li.list-group-item.col-md-4
+                .image-upload
+                  = f.fields_for :images do |image|
+                    = image.file_field :content
+                    = image.hidden_field :status, value: :sub
       .row.proto-description
         .col-md-12
           = f.text_field :cach_copy, placeholder: "Cach Copy"
