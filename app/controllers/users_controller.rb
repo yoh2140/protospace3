@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @prototype = @user.prototypes
   end
 
   private
