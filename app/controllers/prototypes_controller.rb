@@ -3,6 +3,7 @@ class PrototypesController < ApplicationController
   before_action :set_prototype, only: %i(show edit destroy update)
 
   def index
+    @prototypes = Prototype.includes(:user).order("created_at DESC")
   end
 
   def new
@@ -14,13 +15,12 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    prototype = Prototype.new(create_params)
-    if prototype.save
-      flash.now[:success] = "作成が成功しました。"
-      render 'index'
+    @prototype = Prototype.new(create_params)
+    if @prototype.save
+      redirect_to :root, flash: {success: "作成できました。"}
     else
-      flash.now[:danger] = "作成が失敗しました。"
-      render 'index'
+      flash[:danger] = "作成に失敗しました。"
+      render "new"
     end
   end
 
