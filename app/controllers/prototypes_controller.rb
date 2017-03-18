@@ -31,6 +31,12 @@ class PrototypesController < ApplicationController
   end
 
   def update
+    if @prototype.update(create_params)
+      redirect_to ({action: :show}), flash: {success: "更新できました。"}
+    else
+      flash[:danger] = "更新が失敗しました。"
+      render "edit"
+    end
   end
 
   private
