@@ -8,11 +8,6 @@
         .media-body
           %h4#top-aligned-media.media-heading
             = @prototype.title
-          - if user_signed_in? && @prototype.user.id == current_user.id
-            %button.btn.btn-default
-              = link_to "編集する", edit_prototype_path
-            %button.btn.btn-default
-              = link_to "削除する", prototype_path(@prototype), method: :delete
           .proto-user
             = link_to "#{@prototype.user.username}", user_path(@prototype.user)
             .degree
