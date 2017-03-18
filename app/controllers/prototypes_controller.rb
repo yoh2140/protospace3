@@ -24,6 +24,9 @@ class PrototypesController < ApplicationController
     end
   end
 
+  def destroy
+  end
+
   def edit
   end
 
@@ -34,11 +37,6 @@ class PrototypesController < ApplicationController
       flash[:danger] = "更新が失敗しました。"
       render "edit"
     end
-  end
-
-  def destroy
-    @prototype.destroy
-    redirect_to :root, flash: { success: '削除が完了しました。' }
   end
 
   private
