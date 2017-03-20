@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @prototypes = @user.prototypes.order('created_at DESC')
+    @prototypes = @user.prototypes.page(params[:page])
   end
 
   private
