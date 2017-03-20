@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :authenticate_user!, only: :new
+  before_action :authenticate_user!
   before_action :set_prototype, only: %i(show edit destroy update)
 
   def index
@@ -24,13 +24,21 @@ class PrototypesController < ApplicationController
     end
   end
 
-  def destroy
-  end
-
   def edit
   end
 
   def update
+    if @prototype.update(create_params)
+      redirect_to ({action: :show}), flash: {success: "更新できました。"}
+    else
+      flash[:danger] = "更新が失敗しました。"
+      render "edit"
+    end
+  end
+
+  def destroy
+    @prototype.destroy
+    redirect_to :root, flash: { success: '削除が完了しました。' }
   end
 
   private

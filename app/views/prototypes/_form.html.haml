@@ -1,0 +1,14 @@
+.row.proto-description
+  .col-md-12
+    = f.text_field :cach_copy, placeholder: "Cach Copy"
+  .col-md-12
+    = f.text_area :concept, placeholder: "Concept", cols: "30", rows: "4"
+  .col-md-12
+    %h4 Tag List
+    .row
+      .col-md-3
+        %input{type: "text", placeholder: "Web Design"}/
+      .col-md-3
+        %input{type: "text", placeholder: "UI"}/
+      .col-md-3
+    %input{type: "text", placeholder: "Application"}/
