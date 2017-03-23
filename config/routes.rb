@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :prototypes do
     resources :comments
+    resources :likes, only: %i(create destroy)
   end
   resources :users, only: [:update, :edit, :show]
 end
