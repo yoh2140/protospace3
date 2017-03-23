@@ -13,6 +13,7 @@ class PrototypesController < ApplicationController
 
   def show
     @comment = Comment.new
+    @like = @prototype.like_user(current_user)
   end
 
   def create
