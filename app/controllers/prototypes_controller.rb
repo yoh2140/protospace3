@@ -12,8 +12,9 @@ class PrototypesController < ApplicationController
   end
 
   def show
+    prototype = Prototype.find(params[:id])
     @comment = Comment.new
-    @comments = @prototype.comments
+    @comments = prototype.comments
     @like = @prototype.like_user(current_user)
   end
 
