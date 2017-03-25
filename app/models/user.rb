@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :comments
   has_many :prototypes
   has_many :likes
   # Include default devise modules. Others available are:
