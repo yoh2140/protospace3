@@ -46,11 +46,15 @@
   .row.proto-comments
     %h4.col-md-12
       Comments
-      %span.num= @prototype.comments.length
+      %span.num= @comments.count
     .col-md-8
+      #comment
+        = render @comments
 
-      = form_for(@comment, url: prototype_comments_path(@prototype, @comment), html: { method: :post }, class: "form-inline", role: "form") do |f|
-        .form-group.col-md-10
-          = f.text_area :content, placeholder:"コメントをしよう", row: "3", class: "form-control"
-        .form-group.col-md-2
-          = button_tag "作成", class: "btn btn-primary", type: "submit"
+      = form_for(@comment, url: prototype_comments_path(@prototype, @comment), html: { method: :post }, class: "form-inline", role: "form", remote: true) do |f|
+        %h4 Write a comment
+        .row
+          .form-group.col-md-10
+            = f.text_area :content, placeholder:"コメントをしよう", row: "3", class: "form-control"
+          .form-group.col-md-2
+            = button_tag "作成", class: "btn btn-primary", type: "submit"
