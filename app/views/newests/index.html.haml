@@ -1,0 +1,8 @@
+= render partial: "prototypes/sub_prototype"
+
+.container.proto-list
+  .row#prototype
+    = render @prototypes
+
+.text-center
+  = paginate @prototypes
