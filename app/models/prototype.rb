@@ -10,6 +10,10 @@ class Prototype < ActiveRecord::Base
 
   paginates_per 8
 
+  acts_as_taggable
+  acts_as_taggable_on :tag_list
+
+
   def like_user(user)
     likes.find_by(user_id: user)
   end
