@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :users, only: %i(update edit show)
   resources :newests, only: :index
   resources :populars, only: :index
+  resources :tags, only: %i(index show)
 end
