@@ -7,8 +7,8 @@
     %h4 Tag List
     .row
       .col-md-3
-        %input{type: "text", placeholder: "Web Design"}/
+        = f.text_field :tag_list, placeholder: "Wed Design", name: "prototype[tag_list][]"
       .col-md-3
-        %input{type: "text", placeholder: "UI"}/
+        = f.text_field :tag_list, placeholder: "UI", name: "prototype[tag_list][]"
       .col-md-3
-    %input{type: "text", placeholder: "Application"}/
+        = f.text_field :tag_list, placeholder: "Application", name: "prototype[tag_list][]"
