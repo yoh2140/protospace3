@@ -10,4 +10,4 @@
           = link_to "Popurar", populars_path, remote: :true
         %li#newest.active{role: "presentation"}
           = link_to "Newest", newests_path
-      %button{type: "button", class: "btn btn-default col-lg-1"} View Tags
+      = button_to "View Tags", tags_path, class: "btn btn-default col-lg-1", method: :get
