@@ -1,0 +1,9 @@
+= render "prototypes/sub_prototype"
+
+.container.proto-list
+  .row
+    = render @prototypes
+
+.text-center
+  %ul.pagination
+    = paginate @prototypes

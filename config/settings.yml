@@ -1,0 +1,14 @@
+default: &default
+  pages: 8
+
+development:
+  <<: *default
+  pages: 8
+
+test:
+  <<: *default
+  pages: 8
+
+production:
+  <<: *default
+  pages: 8
