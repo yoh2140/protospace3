@@ -8,7 +8,7 @@ class Prototype < ActiveRecord::Base
 
   validates :title, :cach_copy, :concept, presence:true
 
-  paginates_per EasySettings.pagination!.per_page(8)
+  paginates_per EasySettings.pages
 
   acts_as_taggable
   acts_as_taggable_on :tag_list

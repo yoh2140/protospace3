@@ -1,14 +1,14 @@
 default: &default
-  key1: value1
+  pages: 8
 
 development:
   <<: *default
-  key2: value2.d
+  pages: 8
 
 test:
   <<: *default
-  key2: value2.t
+  pages: 8
 
 production:
   <<: *default
-  key2: value2.p
+  pages: 8
