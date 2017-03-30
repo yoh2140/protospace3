@@ -8,11 +8,10 @@ class Prototype < ActiveRecord::Base
 
   validates :title, :cach_copy, :concept, presence:true
 
-  paginates_per 8
+  paginates_per EasySettings.pagination!.per_page(8)
 
   acts_as_taggable
   acts_as_taggable_on :tag_list
-
 
   def like_user(user)
     likes.find_by(user_id: user)
