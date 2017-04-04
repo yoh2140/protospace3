@@ -6,18 +6,19 @@
           = f.text_field :title, class: "proto-new-title", placeholder: "Title"
       .row
         .col-md-12
-          .cover-image-upload
-            = f.fields_for :images, @prototype.images.main do |image|
+          = f.fields_for :images, @prototype.images.main do |image|
+            .cover-image-upload#js-main-image
+              = image_tag(image, class: 'img-responsive')
               = image.file_field :content
               = image.hidden_field :status, value: :main
-        .col-md-12
-          - @prototype.images.sub.each do |image|
             %ul.proto-sub-list.list-group
-              %li.list-group-item.col-md-4
-                .image-upload
-                  = f.fields_for :images, image do |image_form|
-                    = image_form.file_field :content
-                    = image_form.hidden_field :status, value: :sub
+              - @prototype.images.sub.each_with_index do |image, i|
+                = f.fields_for :images, image do |image_form|
+                  %li.list-group-item.col-md-4
+                    .image-upload{ id: "js-sub-image-#{i+1}"}
+                      = image_tag(image, class: 'img-responsive')
+                      = image_form.file_field :content
+                      = image_form.hidden_field :status, value: :sub
 
       = render "form", f: f
 
