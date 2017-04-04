@@ -1,14 +1,18 @@
 default: &default
   pages: 8
+  number: 2
 
 development:
   <<: *default
   pages: 8
+  number: 2
 
 test:
   <<: *default
   pages: 8
+  number: 2
 
 production:
   <<: *default
   pages: 8
+  number: 2
