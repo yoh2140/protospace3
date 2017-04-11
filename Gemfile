@@ -36,6 +36,16 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'dotenv-rails'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'faker', '~> 1.6.6'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'poltergeist'
 end
 
 group :development do
