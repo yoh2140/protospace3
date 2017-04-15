@@ -11,27 +11,77 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311053655) do
+ActiveRecord::Schema.define(version: 20170328072360) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content",      limit: 65535
+    t.integer  "prototype_id", limit: 4
+    t.integer  "user_id",      limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "comments", ["prototype_id"], name: "index_comments_on_prototype_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.text     "content",      limit: 65535
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "prototype_id", limit: 4
+    t.integer  "status",       limit: 4
   end
 
   add_index "images", ["prototype_id"], name: "index_images_on_prototype_id", using: :btree
 
+  create_table "likes", force: :cascade do |t|
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "prototype_id", limit: 4
+    t.integer  "user_id",      limit: 4
+  end
+
+  add_index "likes", ["prototype_id"], name: "index_likes_on_prototype_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+
   create_table "prototypes", force: :cascade do |t|
-    t.string   "title",      limit: 255,   default: ""
-    t.text     "cach_copy",  limit: 65535
-    t.text     "concept",    limit: 65535
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.string   "title",       limit: 255,   default: ""
+    t.text     "cach_copy",   limit: 65535
+    t.text     "concept",     limit: 65535
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "likes_count", limit: 4
   end
 
   add_index "prototypes", ["user_id"], name: "fk_rails_8add56efc2", using: :btree
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id",        limit: 4
+    t.integer  "taggable_id",   limit: 4
+    t.string   "taggable_type", limit: 255
+    t.integer  "tagger_id",     limit: 4
+    t.string   "tagger_type",   limit: 255
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["context"], name: "index_taggings_on_context", using: :btree
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy", using: :btree
+  add_index "taggings", ["taggable_id"], name: "index_taggings_on_taggable_id", using: :btree
+  add_index "taggings", ["taggable_type"], name: "index_taggings_on_taggable_type", using: :btree
+  add_index "taggings", ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
+  add_index "taggings", ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string  "name",           limit: 255
+    t.integer "taggings_count", limit: 4,   default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",               limit: 255,   default: ""
@@ -56,6 +106,10 @@ ActiveRecord::Schema.define(version: 20170311053655) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "comments", "prototypes"
+  add_foreign_key "comments", "users"
   add_foreign_key "images", "prototypes"
+  add_foreign_key "likes", "prototypes"
+  add_foreign_key "likes", "users"
   add_foreign_key "prototypes", "users"
 end
