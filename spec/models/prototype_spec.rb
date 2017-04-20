@@ -5,8 +5,8 @@ describe Prototype  do
 
     it "Userモデルと関連づけられている" do
       user = create(:user)
-      proto = create(:prototype, user: user)
-      expect(proto.user).to eq user
+      prototype = create(:prototype, user: user)
+      expect(prototype.user).to eq user
     end
 
   end
@@ -19,21 +19,21 @@ describe Prototype  do
     end
 
     it "タイトルが空欄です。" do
-      proto = build(:prototype, title: nil)
-      proto.valid?
-      expect(proto.errors[:title]).to include("can't be blank")
+      prototype = build(:prototype, title: nil)
+      prototype.valid?
+      expect(prototype.errors[:title]).to include("can't be blank")
     end
 
     it "キャッチコピーが空欄です。" do
-      proto = build(:prototype, cach_copy: nil)
-      proto.valid?
-      expect(proto.errors[:cach_copy]).to include("can't be blank")
+      prototype = build(:prototype, cach_copy: nil)
+      prototype.valid?
+      expect(prototype.errors[:cach_copy]).to include("can't be blank")
     end
 
     it "コンセプトが空欄です。" do
-      proto = build(:prototype, concept: nil)
-      proto.valid?
-      expect(proto.errors[:concept]).to include("can't be blank")
+      prototype = build(:prototype, concept: nil)
+      prototype.valid?
+      expect(prototype.errors[:concept]).to include("can't be blank")
     end
 
   end
