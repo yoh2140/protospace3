@@ -75,4 +75,14 @@ describe PrototypesController, type: :controller do
       end
     end
 
+    describe 'GET #edit' do
+      before { get :edit, id: prototype }
+      it "@prototypeは正常に割り当てられています。" do
+        expect(assigns(:prototype)).to eq prototype
+      end
+      it "editテンプレートを表示できました。" do
+        expect(response).to render_template :edit
+      end
+    end
+
 end
