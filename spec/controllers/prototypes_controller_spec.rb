@@ -60,7 +60,19 @@ describe PrototypesController, type: :controller do
           expect(flash[:danger]).to eq '作成に失敗しました。'
         end
       end
-      
+    end
+
+    describe 'GET#show' do
+      before { get :show, id: prototype }
+      it "showテンプレートに遷移できました。" do
+        expect(response).to render_template :show
+      end
+      it "@prototypesは正常に割り当てられています。" do
+        expect(assigns(:prototype)).to eq prototype
+      end
+      it "@commentは正常に割り当てられています。" do
+        expect(assigns(:comment)).to be_a_new(Comment)
+      end
     end
 
 end
