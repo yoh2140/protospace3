@@ -24,4 +24,14 @@ describe PrototypesController, type: :controller do
       end
     end
 
+    describe 'GET #new' do
+      before { get :new }
+      it "@prototypeは正常に割り当てられています。" do
+        expect(assigns(:prototype)).to be_a_new(Prototype)
+      end
+      it "newテンプレートに遷移できました。" do
+        expect(response).to render_template :new
+      end
+    end
+
 end
