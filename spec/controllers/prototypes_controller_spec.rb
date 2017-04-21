@@ -85,4 +85,39 @@ describe PrototypesController, type: :controller do
       end
     end
 
+    describe 'PATCH #update' do
+      context '成功した場合' do
+        before { patch :update, params }
+        it '@prototypesは正常に割り当てられています。' do
+          expect(assigns(:prototype)).to eq prototype
+        end
+        it '記事を更新しました。' do
+          prototype.reload
+          expect(prototype.title).to eq "aaaaaa"
+        end
+        it '詳細ページにリダイレクトしました。' do
+          expect(response).to redirect_to prototype_path(prototype)
+        end
+        it '更新成功メッセージが表示されました。' do
+          expect(flash[:success]).to eq '更新できました。'
+        end
+      end
+      context '失敗した場合' do
+        before { patch :update, invalid_params }
+        it '@prototypesは正常に割り当てられていません。' do
+          expect(assigns(:prototype)).to eq prototype
+        end
+        it '記事を更新できませんでした。' do
+          prototype.reload
+          expect(prototype.title).not_to eq "aaaaaa"
+        end
+        it '編集ページにリダイレクトしました。' do
+          expect(response).to render_template :edit
+        end
+        it '更新成功メッセージが表示されました。' do
+          expect(flash[:danger]).to eq '更新が失敗しました。'
+        end
+      end
+    end
+    
 end
