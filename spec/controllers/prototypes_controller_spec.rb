@@ -119,5 +119,24 @@ describe PrototypesController, type: :controller do
         end
       end
     end
-    
+
+    describe 'DELETE #destroy' do
+      it '@prototypeは正常に割り当てられています。' do
+        delete :destroy, id: prototype
+        expect(assigns(:prototype)).to eq prototype
+      end
+      it '記事を正常に削除できました。' do
+        expect{ delete :destroy, id: prototype }.to change(Prototype, :count).by(-1)
+      end
+      it 'トップページにリダイレクトしました。' do
+        delete :destroy, id: prototype
+        expect(assigns(:prototype)).to redirect_to root_path
+      end
+      it '削除メッセージが表示されました。' do
+        delete :destroy, id: prototype
+        expect(flash[:success]).to eq '削除が完了しました。'
+      end
+    end
+
+  end
 end
