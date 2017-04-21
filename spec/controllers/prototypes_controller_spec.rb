@@ -49,7 +49,6 @@ describe PrototypesController, type: :controller do
       end
       context '失敗した場合' do
         before { post :create, invalid_params}
-        it '@prototypeに'
         it '情報をデーターベースに保存できませんでした。' do
           expect{ post :create, invalid_params }.not_to change(Prototype, :count)
         end
