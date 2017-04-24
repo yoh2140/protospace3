@@ -27,5 +27,15 @@ describe UsersController do
       end
     end
 
+    describe 'GET#edit' do
+      before { get :edit, id: user }
+      it '@userは正常に割り当てられています。' do
+        expect(assigns(:user)).to eq user
+      end
+      it 'editテンプレートを表示できました。' do
+        expect(response).to render_template :edit
+      end
+    end
+
   end
 end
