@@ -5,6 +5,7 @@ FactoryGirl.define do
     cach_copy   { Faker::Lorem.word }
     concept     { Faker::Lorem.sentence }
     user
-  end
+    created_at { Faker::Time.between(2.days.ago, Time.now, :all) }
 
+  end
 end
