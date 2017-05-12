@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Sign in', type: :feature do
-  given(:user) { FactoryGirl.build(:user) }
+  given(:user) { build(:user) }
   background do
     login_as user
   end
